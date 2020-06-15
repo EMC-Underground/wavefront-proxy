@@ -1,3 +1,0 @@
-gauges:
-  - pattern: "badgauge"
-    metricName: "gaugeWithoutValueWillThrowAnError"

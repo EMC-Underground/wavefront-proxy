@@ -1,26 +1,11 @@
-# Wavefront Proxy Project [![Build Status](https://travis-ci.org/wavefrontHQ/wavefront-proxy.svg?branch=master)](https://travis-ci.org/wavefrontHQ/wavefront-proxy)
+The Proxy will accept Wavefront formatted message on port 2878 (additional listeners can be enabled in WAVEFRONT_PROXY_ARGS, see below). 
+Just run this docker image with the following environment variables defined, e.g. 
 
-[Wavefront](https://docs.wavefront.com/) is a high-performance streaming analytics platform for monitoring and optimizing your environment and applications.
+    docker build -t wavefront-proxy .
+    docker run \
+        -e WAVEFRONT_URL=https://you.wavefront.com/api \
+        -e WAVEFRONT_TOKEN=<YOUR-API-TOKEN> \
+        -p 2878:2878 \
+        wavefront-proxy
 
-The [Wavefront Proxy](https://docs.wavefront.com/proxies.html) is a light-weight Java application that you send your metrics, histograms, and trace data to. It handles batching and transmission of your data to the Wavefront service in a secure, fast, and reliable manner.
-
-## Requirements
-  * Java 8 or higher
-  * Maven
-
-## Overview
-  * pkg: Build and runtime packaging for the Wavefront proxy.
-  * proxy: [Wavefront Proxy](https://docs.wavefront.com/proxies.html) source code.
-
-  Please refer to the [project page](https://github.com/wavefrontHQ/wavefront-proxy/tree/master/proxy) for further details.
-
-## To start developing
-
-```
-$ git clone https://github.com/wavefronthq/wavefront-proxy
-$ cd wavefront-proxy
-$ mvn clean install -DskipTests
-```
-
-## Contributing
-Public contributions are always welcome. Please feel free to report issues or submit pull requests.
+All properties that exist in [wavefront.conf](https://github.com/wavefrontHQ/java/blob/master/pkg/etc/wavefront/wavefront-proxy/wavefront.conf.default) can be customized by passing their name as long form arguments within your docker run command in the WAVEFRONT_PROXY_ARGS environment variable. For example, add `-e WAVEFRONT_PROXY_ARGS="--pushRateLimit 1000"` to your docker run command to specify a [rate limit](https://github.com/wavefrontHQ/java/blob/master/pkg/etc/wavefront/wavefront-proxy/wavefront.conf.default#L62) of 1000 pps for the proxy.

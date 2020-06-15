@@ -1,9 +1,0 @@
-{
-  "internalHostname": "testHost",
-  "host-tags": {
-    "system": [
-      "app:closedstack",
-      "role:control"
-    ]
-  }
-}

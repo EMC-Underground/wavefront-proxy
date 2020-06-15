@@ -15,7 +15,6 @@ RUN apt-get install -y apt-utils
 RUN apt-get install -y curl
 RUN apt-get install -y sudo
 RUN apt-get install -y gnupg2
-RUN apt-get install -y ca-certificates
 RUN apt-get install -y debian-archive-keyring
 RUN apt-get install -y apt-transport-https
 RUN apt-get install -y openjdk-11-jdk

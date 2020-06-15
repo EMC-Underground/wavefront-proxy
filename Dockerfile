@@ -51,6 +51,7 @@ EXPOSE 2878
 EXPOSE 4242
 
 ADD EMCRootCA.cer /usr/local/share/ca-certificate/EMCRootCA.crt
+RUN chmod 644 /usr/local/share/ca-certificate/EMCRootCA.crt
 RUN update-ca-certificates
 ADD run.sh run.sh
 CMD ["/bin/bash", "/run.sh"]

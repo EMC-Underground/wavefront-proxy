@@ -43,7 +43,7 @@ RUN adduser --disabled-password --gecos '' --uid 1000 --gid 2000 wavefront
 RUN chown -R wavefront:wavefront /var
 RUN chmod 755 /var
 ADD EMCRootCA.cer /usr/local/share/ca-certificate/EMCRootCA.cer
-RUN chmod 644 /usr/local/share/ca-certificate/EMCRootCA.crt
+RUN chmod 644 /usr/local/share/ca-certificate/EMCRootCA.cer
 RUN update-ca-certificates
 
 USER 1000:2000

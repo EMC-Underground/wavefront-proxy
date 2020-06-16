@@ -24,8 +24,6 @@ RUN chmod 644 /usr/local/share/ca-certificates/ca.crt
 RUN chmod 644 /usr/local/share/ca-certificates/EMCSSLDecryptionCAv2.crt
 RUN update-ca-certificates
 RUN apt-get install -y openjdk-11-jdk
-ADD EMCRootCA.crt /usr/local/share/ca-certificates/ca.crt
-RUN keytool -import -alias emc_cert -keystore cacerts -file /usr/local/share/ca-certificates/ca.crt
 
 # Download wavefront proxy (latest release). Merely extract the debian, don't want to try running startup scripts.
 RUN echo "deb https://packagecloud.io/wavefront/proxy/ubuntu/ bionic main" > /etc/apt/sources.list.d/wavefront_proxy.list

@@ -23,6 +23,7 @@ fi
 
 java \
     $jvm_container_opts $JAVA_ARGS \
+  -Dtrust_all_cert=true \
 	-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager \
 	-Dlog4j.configurationFile=/etc/wavefront/wavefront-proxy/log4j2.xml \
 	-jar /opt/wavefront/wavefront-proxy/bin/wavefront-proxy.jar \

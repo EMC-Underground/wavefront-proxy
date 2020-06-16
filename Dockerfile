@@ -17,8 +17,11 @@ RUN apt-get install -y sudo
 RUN apt-get install -y gnupg2
 RUN apt-get install -y debian-archive-keyring
 RUN apt-get install -y apt-transport-https
-RUN apt-get install -y openjdk-11-jdk
 RUN apt-get install -y ca-certificates
+ADD EMCRootCA.crt /usr/local/share/ca-certificates/ca.crt
+RUN chmod 644 /usr/local/share/ca-certificates/ca.crt
+RUN update-ca-certificates
+RUN apt-get install -y openjdk-11-jdk
 
 # Download wavefront proxy (latest release). Merely extract the debian, don't want to try running startup scripts.
 RUN echo "deb https://packagecloud.io/wavefront/proxy/ubuntu/ bionic main" > /etc/apt/sources.list.d/wavefront_proxy.list
@@ -42,9 +45,6 @@ RUN groupadd -g 2000 wavefront
 RUN adduser --disabled-password --gecos '' --uid 1000 --gid 2000 wavefront
 RUN chown -R wavefront:wavefront /var
 RUN chmod 755 /var
-ADD EMCRootCA.crt /etc/ssl/certs/EMCRootCA.crt
-RUN chmod 644 /etc/ssl/certs/EMCRootCA.crt
-RUN update-ca-certificates
 
 USER 1000:2000
 

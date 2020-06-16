@@ -22,6 +22,7 @@ ADD EMCRootCA.crt /usr/local/share/ca-certificates/ca.crt
 ADD EMCSSLDecryptionCAv2.crt /usr/local/share/ca-certificates/EMCSSLDecryptionCAv2.crt
 RUN chmod 644 /usr/local/share/ca-certificates/ca.crt
 RUN chmod 644 /usr/local/share/ca-certificates/EMCSSLDecryptionCAv2.crt
+keytool -import -alias emc_cert -keystore cacerts -file /usr/local/share/ca-certificates/ca.crt
 RUN update-ca-certificates
 RUN apt-get install -y openjdk-11-jdk
 
